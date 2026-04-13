@@ -1,0 +1,237 @@
+/* ================= RESET ================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ================= BODY ================= */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #0f172a, #1e3a8a);
+    color: #f1f5f9;
+    line-height: 1.6;
+}
+
+/* ================= CONTAINER ================= */
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* ================= NAVBAR ================= */
+nav {
+    background: rgba(2, 6, 23, 0.8);
+    backdrop-filter: blur(10px);
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+}
+
+nav ul li {
+    margin: 0 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #38bdf8;
+    font-weight: bold;
+    position: relative;
+    transition: 0.3s;
+}
+
+/* Hover underline animation */
+nav a::after {
+    content: "";
+    width: 0%;
+    height: 2px;
+    background: #facc15;
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    transition: 0.3s;
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+nav a:hover {
+    color: #facc15;
+}
+
+/* ================= HEADER ================= */
+header {
+    text-align: center;
+    margin: 30px 0;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    color: #facc15;
+}
+
+header p {
+    color: #cbd5f5;
+}
+
+/* ================= SECTIONS ================= */
+section {
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    color: white;
+    border: 1px solid rgba(255,255,255,0.1);
+
+    /* Animation */
+    transform: translateY(20px);
+    opacity: 0;
+    animation: fadeIn 0.8s ease forwards;
+}
+.blue {
+    background: rgba(56, 189, 248, 0.15);
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+}
+
+.green {
+    background: rgba(34, 197, 94, 0.15);
+    box-shadow: 0 0 20px rgba(34, 197, 94, 0.4);
+}
+
+.purple {
+    background: rgba(168, 85, 247, 0.15);
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
+}
+
+.orange {
+    background: rgba(249, 115, 22, 0.15);
+    box-shadow: 0 0 20px rgba(249, 115, 22, 0.4);
+}
+
+/* Stagger animation */
+section:nth-child(2) { animation-delay: 0.2s; }
+section:nth-child(3) { animation-delay: 0.4s; }
+section:nth-child(4) { animation-delay: 0.6s; }
+
+/* ================= IMAGE ================= */
+.profile-pic {
+    width: 150px;
+    border-radius: 50%;
+    display: block;
+    margin: 15px auto;
+    border: 3px solid #38bdf8;
+}
+
+/* ================= BUTTON ================= */
+button {
+    padding: 12px 20px;
+    background: linear-gradient(to right, #38bdf8, #22c55e);
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.1);
+    background: linear-gradient(to right, #facc15, #f97316);
+}
+
+/* ================= TABLE ================= */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+th, td {
+    padding: 12px;
+    text-align: center;
+}
+
+th {
+    background: #020617;
+    color: #facc15;
+}
+
+tr:nth-child(even) {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* ================= FORM ================= */
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    margin-top: 5px;
+    outline: none;
+}
+
+input:focus, textarea:focus {
+    border: 2px solid #38bdf8;
+}
+
+/* ================= FOOTER ================= */
+footer {
+    text-align: center;
+    margin-top: 30px;
+    color: #94a3b8;
+}
+
+/* ================= LOADER ================= */
+#loader {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: #020617;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#content {
+    display: none;
+}
+
+/* ================= ANIMATION ================= */
+@keyframes fadeIn {
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav ul li {
+        margin: 10px 0;
+    }
+
+    header h1 {
+        font-size: 2rem;
+    }
+
+    .profile-pic {
+        width: 120px;
+    }
+}
