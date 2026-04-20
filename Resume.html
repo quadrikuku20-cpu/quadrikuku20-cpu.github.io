@@ -17,10 +17,11 @@
         <!-- ================= NAVIGATION ================= -->
         <nav>
             <ul>
-                <li><a href="About.html">Home</a></li>
+                <li><a href="index.html">Home</a></li>
                 <li><a href="Resume.html">Resume</a></li>
                 <li><a href="Hobby.html">Hobbies</a></li>
                 <li><a href="CheatSheet.html">Cheat Sheet</a></li>
+                <li><a href="Tic-tac-toe.html">Game</a></li>
             </ul>
         </nav>
 
@@ -111,29 +112,41 @@
         <section class="blue">
             <h2>Contact Me</h2>
 
-            <form>
+            <form id="contact-form" action="https://formspree.io/f/mgorordz" method="POST">
 
-                <fieldset>
-                    <legend>Send Me a Message</legend>
+                <div class="input-group">
+                    <label>Name</label><br>
+                    <input type="text" name="name" required>
+                
+                </div>
 
-                    <label for="name">Name:</label><br>
-                    <input type="text" id="name" name="name" required><br><br>
+                <div class="input-group">
+                    <label>Email</label><br>
+                    <input type="email" name="email" required>
+                    
+                </div>
 
-                    <label for="email">Email:</label><br>
-                    <input type="email" id="email" name="email" required><br><br>
+                <div class="input-group">
+                    <label>Phone</label><br>
+                    <input type="tel" name="phone">
+                
+                </div>
 
-                    <label for="phone">Phone:</label><br>
-                    <input type="tel" id="phone" name="phone"><br><br>
+                <div class="input-group">
+                    <label>Message</label><br>
+                    <textarea name="message" rows="5" required></textarea>
+                    
+                </div>
 
-                    <label for="message">Message:</label><br>
-                    <textarea id="message" name="message" rows="5" required></textarea><br><br>
+                <button type="submit" id="send-btn">
+                    <span id="btn-text">Send Message</span>
+                </button>
 
-                    <input type="submit" value="Send Message">
-
-                </fieldset>
+                <p id="form-status"></p>
 
             </form>
         </section>
+
 
         <!-- ================= FOOTER ================= -->
         <footer>
@@ -141,6 +154,8 @@
         </footer>
 
     </div>
+
+    <script src="script.js"></script>
 </body>
 
 </html>

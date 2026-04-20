@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Tic Tac Toe</title>
+    <link rel="stylesheet" href="Tic-tac-toe.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="Tic-tac-toe.js"></script>
+</head>
+
+<body>
+
+    <body>
+
+        <div class="container">
+
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="Resume.html">Resume</a></li>
+                    <li><a href="Hobby.html">Hobbies</a></li>
+                    <li><a href="CheatSheet.html">Cheat Sheet</a></li>
+                    <li><a href="Tic-tac-toe.html">Game</a></li>
+                </ul>
+            </nav>
+
+            <header>
+                <h1>Tic-Tac-Toe</h1>
+                <p>Play against a friend or challenge the AI 🤖</p>
+
+            </header>
+            <div class="scoreboard">
+                <p>Player X: <span id="scoreX">0</span></p>
+                <p>Player O: <span id="scoreO">0</span></p>
+            </div>
+
+            <section class="game-section blue">
+
+                <h2>Game Mode</h2>
+
+                <select id="mode">
+                    <option value="pvp">Player vs Player</option>
+                    <option value="ai">Player vs AI</option>
+                </select>
+
+                <div class="board-wrapper">
+                    <table class="game-board">
+                        <tr>
+                            <td id="cell00" onclick="cellClicked(0, 0)"></td>
+                            <td id="cell01" onclick="cellClicked(0, 1)"></td>
+                            <td id="cell02" onclick="cellClicked(0, 2)"></td>
+                        </tr>
+                        <tr>
+                            <td id="cell10" onclick="cellClicked(1, 0)"></td>
+                            <td id="cell11" onclick="cellClicked(1, 1)"></td>
+                            <td id="cell12" onclick="cellClicked(1, 2)"></td>
+                        </tr>
+                        <tr>
+                            <td id="cell20" onclick="cellClicked(2, 0)"></td>
+                            <td id="cell21" onclick="cellClicked(2, 1)"></td>
+                            <td id="cell22" onclick="cellClicked(2, 2)"></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <p id="status"></p>
+                <button onclick="resetGame()">Restart Game</button>
+
+            </section>
+
+            <footer>
+                <p>© 2026 Your Portfolio</p>
+            </footer>
+
+        </div>
+
+    </body>
+
+</body>
+
+</html>

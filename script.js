@@ -1,137 +1,191 @@
-// ================= LOADING SCREEN =================
+// ================= INIT =================
+document.addEventListener("DOMContentLoaded", () => {
 
-// Wait for full page load
-window.addEventListener("load", function () {
-    setTimeout(() => {
-        document.getElementById("loader").style.display = "none";
-        document.getElementById("content").style.display = "block";
-    }, 1500); // smooth delay
-});
+    // ================= LOADING SCREEN =================
+    window.addEventListener("load", () => {
+        const loader = document.getElementById("loader");
+        const content = document.getElementById("content");
 
+        setTimeout(() => {
+            if (loader) loader.style.display = "none";
+            if (content) content.style.display = "block";
+        }, 1000);
+    });
 
-// ================= ROAST FUNCTION =================
+    // ================= TOAST FUNCTION =================
+    function showToast(message) {
+        const toast = document.createElement("div");
+        toast.innerText = message;
 
-// Funny messages for interaction
-function roastUser() {
-    const roasts = [
-        "You clicked this... now go code something 😭",
-        "Even your WiFi is faster than your coding speed 😂",
-        "Relax small, you're doing well 😄",
-        "Future developer loading... please wait ⏳",
-        "No bugs? That means you didn’t code enough 😏"
-    ];
+        Object.assign(toast.style, {
+            position: "fixed",
+            bottom: "20px",
+            right: "20px",
+            background: "#020617",
+            color: "#fff",
+            padding: "12px 20px",
+            borderRadius: "10px",
+            zIndex: "1000",
+            boxShadow: "0 5px 15px rgba(0,0,0,0.3)"
+        });
 
-    let random = Math.floor(Math.random() * roasts.length);
+        document.body.appendChild(toast);
+        setTimeout(() => toast.remove(), 2500);
+    }
 
-    showToast(roasts[random]);
-}
+    // ================= ROAST FEATURE =================
+    window.roastUser = function () {
+        const roasts = [
+            "You clicked this... now go code something 😭",
+            "Even your WiFi is faster than your coding speed 😂",
+            "Relax, you're improving… slowly 😄",
+            "Future developer loading... still loading ⏳",
+            "No bugs? That just means you didn’t code enough 😏",
+            "Your code runs... only in imagination 💀",
+            "My code was working… then I showed someone 😭",
+            "I renamed one variable and everything collapsed 💀",
+            "My laptop updated itself at the worst time 😭",
+            "I wrote the code… it just doesn’t want to run 😩",
+            "My code and I are no longer on speaking terms 💀",
+            "I clicked run and prayed… nothing happened 😭",
+            "It worked perfectly in my head 😭",
 
+        ];
 
-// ================= TOAST NOTIFICATION =================
+        showToast(roasts[Math.floor(Math.random() * roasts.length)]);
+    };
 
-// Create popup notification instead of alert
-function showToast(message) {
-    let toast = document.createElement("div");
-    toast.innerText = message;
+    // ================= MINI GAME =================
+    let score = 0;
+    let highScore = 0;
 
-    toast.style.position = "fixed";
-    toast.style.bottom = "20px";
-    toast.style.right = "20px";
-    toast.style.background = "#020617";
-    toast.style.color = "white";
-    toast.style.padding = "12px 20px";
-    toast.style.borderRadius = "10px";
-    toast.style.boxShadow = "0 0 10px rgba(0,0,0,0.5)";
-    toast.style.zIndex = "1000";
+    const gameBtn = document.getElementById("gameBtn");
+    const scoreDisplay = document.getElementById("score");
 
-    document.body.appendChild(toast);
+    if (gameBtn) {
+        const moveButton = () => {
+            const btnWidth = gameBtn.offsetWidth;
+            const btnHeight = gameBtn.offsetHeight;
 
-    setTimeout(() => {
-        toast.remove();
-    }, 3000);
-}
+            // Visible viewport (not full page)
+            const viewportWidth = window.innerWidth;
+            const viewportHeight = window.innerHeight;
 
+            // Safe margins so it doesn’t stick to edges
+            const margin = 10;
 
-// ================= MINI GAME (UPGRADED) =================
+            const maxX = viewportWidth - btnWidth - margin;
+            const maxY = viewportHeight - btnHeight - margin;
 
-let score = 0;
-let highScore = 0;
+            const x = Math.random() * maxX;
+            const y = Math.random() * maxY;
 
-const button = document.getElementById("gameBtn");
+            gameBtn.style.left = `${x}px`;
+            gameBtn.style.top = `${y}px`;
+        };
 
-if (button) {
+        gameBtn.addEventListener("mouseover", moveButton);
+        gameBtn.addEventListener("touchstart", moveButton);
 
-    // Move button randomly
-    button.addEventListener("mouseover", function () {
+        gameBtn.addEventListener("click", () => {
+            score++;
+            if (scoreDisplay) scoreDisplay.innerText = `Score: ${score}`;
+            if (score > highScore) highScore = score;
+
+            showToast(`🔥 Score: ${score}`);
+            moveButton();
+        });
+        gameBtn.addEventListener("mouseenter", moveButton);
+
         moveButton();
-    });
+    }
 
-    // Increase score when clicked
-    button.addEventListener("click", function () {
-        score++;
-        document.getElementById("score").innerText = "Score: " + score;
+    // ================= EXCUSE GENERATOR =================
+    window.generateExcuse = function () {
+        const excuses = [
+            "My laptop froze right when I clicked submit 😭",
+            "The internet saw my assignment and gave up 💀",
+            "I was debugging… turns out I was the bug 😭",
+            "Power went off and came back with attitude ⚡",
+            "I followed the tutorial… mine came out different 😭",
+            "My code said ‘access denied’ to success 💀",
+            "I copied the code correctly… I think 😭",
+            "The deadline got closer and my motivation got farther 💀",
+            "My code only works when no one is watching 😭",
+            "I debugged for 3 hours… it was a missing semicolon 💀",
+            "My code compiled… but my confidence didn’t 😭",
+            "I blame the keyboard 😤",
+        ];
 
-        if (score > highScore) {
-            highScore = score;
+        const excuseText = document.getElementById("excuse");
+        if (excuseText) {
+            excuseText.innerText = excuses[Math.floor(Math.random() * excuses.length)];
+            excuseText.style.transform = "scale(1.1)";
+            setTimeout(() => excuseText.style.transform = "scale(1)", 200);
         }
+    };
 
-        showToast("Nice! Score: " + score);
+    // ================= LIKE BUTTON =================
+    let likes = 0;
+
+    window.likeWebsite = function () {
+        likes++;
+        const likeCount = document.getElementById("likeCount");
+        if (likeCount) likeCount.innerText = `Likes: ${likes}`;
+        showToast("Thanks for liking! 👍");
+    };
+
+    // ================= SCROLL ANIMATION =================
+    const sections = document.querySelectorAll("section");
+
+    window.addEventListener("scroll", () => {
+        sections.forEach(section => {
+            const position = section.getBoundingClientRect().top;
+            if (position < window.innerHeight - 100) {
+                section.style.opacity = "1";
+                section.style.transform = "translateY(0)";
+            }
+        });
     });
-}
 
-// Function to move button randomly
-function moveButton() {
-    const x = Math.random() * (window.innerWidth - 100);
-    const y = Math.random() * (window.innerHeight - 100);
+    // ================= CONTACT FORM =================
+    const form = document.getElementById("contact-form");
+    const status = document.getElementById("form-status");
 
-    button.style.position = "absolute";
-    button.style.left = x + "px";
-    button.style.top = y + "px";
-}
+    if (form) {
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
 
+            const data = new FormData(form);
 
-// ================= EXCUSE GENERATOR =================
+            try {
+                const response = await fetch(form.action, {
+                    method: "POST",
+                    body: data,
+                    headers: { 'Accept': 'application/json' }
+                });
 
-function generateExcuse() {
-    const excuses = [
-        "My laptop froze during submission 😭",
-        "Internet disconnected at the worst time 😩",
-        "I was debugging for hours!",
-        "Power went off unexpectedly ⚡",
-        "I mistakenly deleted my work 😭"
-    ];
+                if (response.ok) {
+                    status.textContent = "✅ Message sent successfully!";
+                    status.style.color = "green";
 
-    let random = Math.floor(Math.random() * excuses.length);
+                    form.reset();
 
-    document.getElementById("excuse").innerText = excuses[random];
-}
+                    // 🔥 Refresh page after short delay
+                    setTimeout(() => {
+                        location.reload();
+                    }, 1500);
 
+                } else {
+                    status.textContent = "❌ Failed to send message.";
+                    status.style.color = "red";
+                }
 
-// ================= LIKE BUTTON =================
+            } catch (error) {
+                status.textContent = "❌ Network error.";
+                status.style.color = "red";
+            }
+        });
+    }
 
-let likes = 0;
-
-function likeWebsite() {
-    likes++;
-    document.getElementById("likeCount").innerText = "Likes: " + likes;
-
-    showToast("Thanks for liking! 👍");
-}
-
-
-// ================= SCROLL ANIMATION =================
-
-// Reveal sections when scrolling
-const sections = document.querySelectorAll("section");
-
-window.addEventListener("scroll", () => {
-    sections.forEach(section => {
-        const position = section.getBoundingClientRect().top;
-        const screenHeight = window.innerHeight;
-
-        if (position < screenHeight - 100) {
-            section.style.opacity = "1";
-            section.style.transform = "translateY(0)";
-        }
-    });
 });

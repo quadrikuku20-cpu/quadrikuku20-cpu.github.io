@@ -1,0 +1,119 @@
+/* ================= TIC TAC TOE (MATCHED DESIGN) ================= */
+
+.game-section {
+    background: #ffffff;
+    padding: 25px;
+    margin: 20px 0;
+    border-radius: 15px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+    border-left: 5px solid #38bdf8;
+    text-align: center;
+}
+
+/* Title */
+.game-section h2 {
+    color: #0f172a;
+    margin-bottom: 10px;
+}
+
+/* Mode select */
+#mode {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #cbd5e1;
+    margin: 10px 0 20px;
+    font-weight: 500;
+}
+
+/* Board wrapper */
+.board-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+/* Game board */
+.game-board {
+    border-collapse: collapse;
+    margin: 20px auto;
+    width: auto;
+}
+
+/* Cells */
+.game-board td {
+    width: 100px;
+    height: 100px;
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+
+    background: #f8fafc;
+    border: 2px solid #e2e8f0;
+
+    transition: all 0.25s ease;
+}
+
+/* Hover effect */
+.game-board td:hover {
+    background: #e0f2fe;
+    transform: scale(1.06);
+    box-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
+}
+
+/* X style */
+.game-board td.X {
+    color: #38bdf8;
+    text-shadow: 0 0 8px rgba(56, 189, 248, 0.5);
+}
+
+/* O style */
+.game-board td.O {
+    color: #f97316;
+    text-shadow: 0 0 8px rgba(249, 115, 22, 0.5);
+}
+
+/* Status */
+#status {
+    margin-top: 15px;
+    font-size: 1.1rem;
+    color: #475569;
+}
+
+/* Win state */
+.win {
+    background: #22c55e !important;
+    color: white !important;
+    animation: winPulse 0.5s ease infinite alternate;
+}
+
+/* Animation */
+@keyframes winPulse {
+    from {
+        transform: scale(1);
+        box-shadow: 0 0 10px #22c55e;
+    }
+    to {
+        transform: scale(1.05);
+        box-shadow: 0 0 20px #22c55e;
+    }
+}
+
+/* Button spacing */
+.game-section button {
+    margin-top: 15px;
+}
+
+.board-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.scoreboard {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 15px;
+    font-weight: 600;
+    color: #0f172a;
+}
